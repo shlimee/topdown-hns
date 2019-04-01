@@ -12,15 +12,12 @@ using Microsoft.Xna.Framework.Input;
 namespace MOBA
 {
     //  TODO: refactor!!
-    public class Unit
+    public class Unit : Model2D
     {
-        public Unit() { this.World = null; }
 
-        public Unit(Vector2 pos, string model, World w)
+        public Unit(string path, Vector2 pos, Vector2 dims, World w) : base(path, pos, dims)
         {
             this.World = w;
-            this.Position = pos;
-            this.Model = new Model2D(model, Position, new Vector2(100,100), Model2D.Layer.MIDDLE, 0);
             this.Health = 100;
             this.SpeedX = 5;
             this.SpeedY = 5;
@@ -28,36 +25,21 @@ namespace MOBA
 
 
         public World World;
-        public Vector2 Position
-        {
-            get
-            {
-                return position;
-            }
-            set
-            {
-                position = value;
-                if(Model != null)
-                    Model.Position = value;
-            }
-        }
-        public Model2D Model;
         public float Health;
         public float SpeedX;
         public float SpeedY;
-        public float Rotation;
 
-        private Vector2 position;
+        protected float rot;
 
 
-        public virtual void Update()
+        public override void Update(Vector2 offset)
         {
-
+            base.Update(offset);
         }
 
-        public virtual void Draw()
+        public override void Draw()
         {
-            Model.Draw();
+            base.Draw();
         }
 
 

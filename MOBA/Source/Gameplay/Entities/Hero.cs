@@ -14,32 +14,29 @@ namespace MOBA
     //  TODO: refactor!!
     public class Hero : Unit
     {
-        public Hero(Vector2 pos, string model, World w) : base(pos, model, w)
+        public Hero(string path, Vector2 pos, Vector2 dims, World w) : base(path, pos, dims, w)
         {
             this.World = w;
-            this.Position = pos;
-            this.Model = new Model2D(model, Position, new Vector2(100, 100), Model2D.Layer.FRONT, 0);
-            this.Health = 100;
-            this.SpeedX = 5;
-            this.SpeedY = 5;
+            //this.Position = pos;
 
              prevMouseState = Mouse.GetState();
         }
 
         MouseState prevMouseState;
 
-        public override void Update()
+        public override void Update(Vector2 offset)
         {
             KeyboardState state = Keyboard.GetState();
             MouseState mouseState = Mouse.GetState();
 
-            Tools.RotateTowards(Position, mouseState.Position.ToVector2(), ref Rotation);
-            Model.Rotation = Rotation;
+            //  ROTATION TOWARDS MOUSE POSITION
+            //Tools.RotateTowards(Position, mouseState.Position.ToVector2(), ref rot);
+            //Rotation = rot;
 
             if(/*prevMouseState.LeftButton == ButtonState.Released && */mouseState.LeftButton == ButtonState.Pressed)
             {
-                Vector2 direction = Vector2.Normalize(new Vector2(mouseState.X, mouseState.Y) - Position);
-                GameGlobals.PassProjectile(new Fireball("textures/fireball", Position, direction, this));
+                Vector2 direction = Vector2.Normalize(GameGlobals.MainCamera.ScreenToWorld(new Vector2(mouseState.X, mouseState.Y)) - Position);
+                GameGlobals.PassProjectile(new Fireball("textures/fireball", Position, new Vector2(8,8), direction, this));
                 Console.WriteLine("Projecitle has been fired!");
             }
 

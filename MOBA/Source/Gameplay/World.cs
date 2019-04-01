@@ -18,8 +18,8 @@ namespace MOBA
         {
 
             Initialize();
-            hero = new Hero(new Vector2(100, 100), "textures/karakter", this);
-            enemy = new Enemy(new Vector2(100, 100), "textures/enemy", this);
+            hero = new Hero("textures/templar_png", Vector2.Zero, new Vector2(16, 16), this);
+            enemy = new Enemy("textures/templar_png", Vector2.Zero, new Vector2(16, 16),  this);
             
             units.Add(hero);
             units.Add(enemy);
@@ -46,7 +46,7 @@ namespace MOBA
                 {
                     foreach (var u in units)
                     {
-                        u.Update();
+                        u.Update(GameGlobals.MainCamera.Position);
                     }
                 }
             }
@@ -57,7 +57,7 @@ namespace MOBA
                 {
                     foreach (var p in projectiles)
                     {
-                        p.Update();
+                        p.Update(GameGlobals.MainCamera.Position);
                     }
                 }
             }

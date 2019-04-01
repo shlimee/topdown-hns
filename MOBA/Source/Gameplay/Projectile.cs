@@ -18,37 +18,19 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MOBA
 {
-    public class Projectile
+    public abstract class Projectile : Model2D
     {
-        public Projectile(string path, Vector2 pos, Vector2 dir, Unit owner)
+        public Projectile(string path, Vector2 pos, Vector2 dims, Vector2 dir, Unit owner) : base(path, pos, dims, Layer.PROJECTILE)
         {
-            this.model = new Model2D(path, pos, new Vector2(16,16));
-            this.position = pos;
-            this.direction = dir;
+            //this.model = new Model2D(path, pos, new Vector2(16,16));
             this.owner = owner;
-
-            Tools.RotateTowards(Position, direction, ref model.Rotation);
+            this.direction = dir;
+            Tools.RotateTowards(Position, direction, ref Rotation);
 
             speed = 1f;
             lifeTime = 3f;
         }
 
-        public Vector2 Position
-        {
-            get
-            {
-                return position;
-            }
-            set
-            {
-                position = value;
-                if(model != null)
-                    model.Position = value;
-            }
-        }
-
-        protected Model2D model;
-        protected Vector2 position;
         protected Vector2 direction;
         protected float speed;
         protected float lifeTime;         // in seconds
@@ -57,7 +39,7 @@ namespace MOBA
 
         
 
-        public virtual void Update()
+        public override void Update(Vector2 offset)
         {
             if(!isDone)
             {
@@ -66,9 +48,9 @@ namespace MOBA
             
         }
 
-        public virtual void Draw()
+        public override void Draw()
         {
-            model.Draw();
+            base.Draw();
         }
     }
 }

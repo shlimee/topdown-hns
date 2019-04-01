@@ -20,15 +20,21 @@ namespace MOBA
 {
     public class Fireball : Projectile
     {
-        public Fireball(string path, Vector2 pos, Vector2 dir, Unit owner) : base(path, pos, dir, owner)
+        public Fireball(string path, Vector2 pos,Vector2 dim, Vector2 dir, Unit owner) : base(path, pos, dim, dir, owner)
         {
-            model = new Model2D(path, pos, new Vector2(32, 32));
-            position = pos;
-            direction = dir;
-            base.owner = owner;
-
-            speed = 10f;
+            //model = new Model2D(path, pos, new Vector2(32, 32));
+            speed = 2f;
             lifeTime = 3f;
+        }
+
+        public override void Update(Vector2 offset)
+        {
+            base.Update(offset);
+        }
+
+        public override void Draw()
+        {
+            base.Draw();
         }
 
     }

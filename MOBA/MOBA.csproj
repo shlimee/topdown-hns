@@ -45,6 +45,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Source\Engine\Camera2D.cs" />
     <Compile Include="Source\Engine\Timer.cs" />
     <Compile Include="Source\Game1.cs" />
     <Compile Include="Source\Engine\GameGlobals.cs" />

@@ -31,7 +31,7 @@ namespace MOBA
         public override void Draw()
         {
             base.Draw();
-            Globals.SpriteBatch.DrawString(font, text, new Vector2(0, 0), Color.Black);
+            Globals.SpriteBatch.DrawString(font, text, new Vector2(0, 0), Color.White);
         }
     }
 }

@@ -18,7 +18,8 @@ namespace MOBA
         {
             BACKGROUND,
             MIDDLE,
-            FRONT
+            FRONT,
+            PROJECTILE
         }
         
         public Model2D(string path, Vector2 pos, Vector2 dims, Layer layer = Layer.MIDDLE, float layerDepth = 0)
@@ -37,6 +38,11 @@ namespace MOBA
         public Texture2D Texture;
         public Layer Layering;
         public float LayerDepth;
+
+        public virtual void Update(Vector2 offset)
+        {
+
+        }
 
         public virtual void Draw()
         {

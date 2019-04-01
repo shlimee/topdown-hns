@@ -19,6 +19,8 @@ namespace MOBA
 {
     public class GameGlobals
     {
+        public static Camera2D MainCamera;
         public static PassObject PassProjectile;
+        public static int TILE_SIZE = 32;
     }
 }
